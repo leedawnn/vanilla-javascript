@@ -17,7 +17,7 @@ export default class Items extends Component {
         },
         {
           seq: 2,
-          contents: 'items2',
+          contents: 'item2',
           active: true,
         },
       ],
@@ -61,16 +61,16 @@ export default class Items extends Component {
       const { items } = this.state;
       const seq = Math.max(0, ...items.map((v) => v.seq)) + 1;
       const contents = target.value;
-      const active = flase;
+      const active = false;
       this.setState({
         items: [...items, { seq, contents, active }],
       });
     });
 
     this.addEvent('click', '.toggleBtn', ({ target }) => {
-      const items = [...this.state.itmes];
+      const items = [...this.state.items];
       const seq = Number(target.closest('[data-seq]').dataset.seq);
-      const index = items.fineIndex((v) => v.seq === seq);
+      const index = items.findIndex((v) => v.seq === seq);
       items[index].active = !items[index].active;
       this.setState({ items });
     });
